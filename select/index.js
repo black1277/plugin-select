@@ -1,5 +1,6 @@
+import './style.scss'
 const getTemplate = (data = [], placeholder, selectedId) => {
-    let text = placeholder ?? 'Placeholder по умолчанию'
+    let text = placeholder ?? 'select one item'
 
     const items = data.map(item => {
         let cls = ''
@@ -26,12 +27,11 @@ const getTemplate = (data = [], placeholder, selectedId) => {
   `
 }
 
-export class Select {
+export class Index {
     constructor(selector, options) {
         this.$el = document.querySelector(selector)
         this.options = options
         this.selectedId = options.selectedId
-
         this.#render()
         this.#setup()
     }

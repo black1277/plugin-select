@@ -1,42 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+$height: 40px;
+$bgcolor: azure;
+$bgdrop: rgba(104, 104, 104, 0.5);
+$bgdrop2: rgba(0, 0, 0, 0);
+$hover1: #e7f6ff;
+$hover2: bisque;
+$hover3: #eee;
+$border: 1px solid #ccc;
+$pad: 0.65rem;
 
 body {
   font-family: 'Roboto', sans-serif;
 }
 
-.app {
+.root {
   padding-top: 5rem;
   display: flex;
   justify-content: center;
 }
 
-.wrap {
-  width: 500px;
+.cont {
+  width: 400px;
 }
-
-$height: 46px;
 
 .select {
   width: 100%;
   position: relative;
   z-index: 100;
-
+  transition: background-color .15s ease-in;
+  &:hover {
+    background-color: $hover1;
+  }
   &.open {
     .select__dropdown {
-      display: block;
+      height: 200px;
+      border: $border;
+      transition: height 0.35s ease-in;
     }
 
     .select__input {
       border-bottom: none;
+      background-color: $bgcolor;
     }
 
     .select__backdrop {
-      display: block;
+      visibility: visible;
+      opacity: 1;
+      background-color: $bgdrop;
     }
   }
 
   &__input {
-    border: 1px solid #ccc;
+    border: $border;
     border-radius: 5px;
     height: $height;
     display: flex;
@@ -47,9 +62,9 @@ $height: 46px;
   }
 
   &__dropdown {
-    display: none;
+    height: 0;
     position: absolute;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
     top: $height;
     left: 0;
@@ -57,6 +72,7 @@ $height: 46px;
     max-height: 200px;
     overflow-y: auto;
     box-shadow: 2px 3px 5px rgba(0, 0, 0, .3);
+    transition: height 0.35s ease-in;
   }
 
   &__list {
@@ -67,27 +83,28 @@ $height: 46px;
 
   &__backdrop {
     position: fixed;
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     z-index: -1;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    background: transparent;
+    background-color: $bgdrop2;
+    transition: visibility ease 0s, opacity ease 1s;
   }
 
   &__item {
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
-
+    padding: $pad;
+    border-bottom: $border;
+    background-color: $bgcolor;
+    transition: background-color .15s ease-in;
     &.selected {
-      background-color: bisque;
+      background-color: $hover2;
     }
-
     &:hover {
-      background-color: #eee;
+      background-color: $hover3;
       cursor: pointer;
-      transition: .15s background-color ease-in;
     }
   }
 }
